@@ -20,6 +20,57 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(disposable);
+
+
+	const disposable2 = vscode.commands.registerCommand('lvos.open', () => {
+        
+        const panel = vscode.window.createWebviewPanel(
+            'LVOSWebView',
+            'LVOS',
+            vscode.ViewColumn.One,
+            {
+                enableScripts: true
+            }
+        );
+
+        panel.webview.html = getWebviewContent();
+    });
+
+    context.subscriptions.push(disposable2);
+}
+
+function getWebviewContent() {
+	return /** HTML */`<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Custom Window</title>
+		<style>
+			body {
+				font-family: sans-serif;
+				padding: 20px;
+				background-color: #1e1e1e;
+				color: #ffffff;
+			}
+			button {
+				background-color: #007acc;
+				color: white;
+				border: none;
+				padding: 10px 20px;
+				cursor: pointer;
+			}
+			button:hover {
+				background-color: #0062a3;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Hello from your custom window!</h1>
+		<p>This is a fully customizable HTML page running inside a VS Code tab.</p>
+		<button onclick="alert('Button clicked!')">Click Me</button>
+	</body>
+	</html>`;
 }
 
 // This method is called when your extension is deactivated
