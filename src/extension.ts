@@ -69,6 +69,7 @@ function getWebviewContent() {
 		<h1>Hello from your custom window!</h1>
 		<p>This is a fully customizable HTML page running inside a VS Code tab.</p>
 		<button onclick="alert('Button clicked!')">Click Me</button>
+		<iframe src="https://iemand005.github.io/LVOS"></iframe>
 	</body>
 	</html>`;
 }
