@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function getWebviewContent() {
-	return /** HTML */`<!DOCTYPE html>
+	return /* HTML */`<!DOCTYPE html>
 	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -59,7 +59,7 @@ function getWebviewContent() {
 		</style>
 	</head>
 	<body>
-		<iframe src="https://iemand005.github.io/LVOS"></iframe>
+		<iframe src="https://iemand005.github.io/LVOS" frameborder="0"></iframe>
 	</body>
 	</html>`;
 }
