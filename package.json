@@ -14,10 +14,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "lvos.helloWorld",
-        "title": "Hello World"
-      },
-      {
         "command": "lvos.open",
         "title": "Open LVOS"
       }
