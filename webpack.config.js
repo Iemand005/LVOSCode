@@ -17,7 +17,20 @@ const extensionConfig = {
     // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
     path: path.resolve(__dirname, 'dist'),
     filename: 'extension.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
+    environment: {
+      // VS Code 1.34 ships Electron 4 / Node 10.2. Force webpack's runtime
+      // helpers into ES5 so the bundle parses on that old runtime.
+      arrowFunction: false,
+      bigIntLiteral: false,
+      const: false,
+      destructuring: false,
+      dynamicImport: false,
+      forOf: false,
+      module: false,
+      optionalChaining: false,
+      templateLiteral: false
+    }
   },
   externals: {
     vscode: 'commonjs vscode' // the vscode-module is created on-the-fly and must be excluded. Add other modules that cannot be webpack'ed, 📖 -> https://webpack.js.org/configuration/externals/
