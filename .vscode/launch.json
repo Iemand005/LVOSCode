@@ -9,6 +9,8 @@
 			"name": "Run Extension",
 			"type": "extensionHost",
 			"request": "launch",
+			"runtimeExecutable": "${execPath}",
+			"stopOnEntry": false,
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}"
 			],
@@ -21,6 +23,8 @@
 			"name": "Extension Tests",
 			"type": "extensionHost",
 			"request": "launch",
+			"runtimeExecutable": "${execPath}",
+			"stopOnEntry": false,
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}",
 				"--extensionTestsPath=${workspaceFolder}/out/test/suite/index"
