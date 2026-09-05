@@ -1,26 +1,62 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+import * as path from 'path';
+import * as fs from 'fs';
+import * as os from 'os';
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
 	const disposable = vscode.commands.registerCommand('lvos.open', () => {
-        
-        const panel = vscode.window.createWebviewPanel(
-            'LVOSWebView',
-            'LVOS',
-            vscode.ViewColumn.One,
-            {
-                enableScripts: true
-            }
-        );
+		openLVOS();
+	});
 
-        panel.webview.html = getWebviewContent();
-    });
+	context.subscriptions.push(disposable);
+}
 
-    context.subscriptions.push(disposable);
+function openLVOS() {
+	const windowApi = vscode.window as any;
+	if (typeof windowApi.createWebviewPanel === 'function') {
+		openWebviewPanel();
+	} else {
+		openPreviewHtml();
+	}
+}
+
+function openWebviewPanel() {
+	const panel = (vscode.window as any).createWebviewPanel(
+		'LVOSWebView',
+		'LVOS',
+		vscode.ViewColumn.One,
+		{
+			enableScripts: true
+		}
+	);
+
+	panel.webview.html = getWebviewContent();
+}
+
+function openPreviewHtml() {
+	const htmlPath = path.join(os.tmpdir(), 'lvos-preview.html');
+	fs.writeFileSync(htmlPath, getWebviewContent(), 'utf8');
+
+	vscode.commands.executeCommand(
+		'vscode.previewHtml',
+		vscode.Uri.file(htmlPath),
+		vscode.ViewColumn.One
+	).then(
+		undefined,
+		() => openExternal()
+	);
+}
+
+function openExternal() {
+	vscode.commands.executeCommand(
+		'vscode.open',
+		vscode.Uri.parse('https://iemand005.github.io/LVOS')
+	).then(
+		undefined,
+		(err) => vscode.window.showErrorMessage(
+			`LVOS: could not open LVOS (needs VS Code 1.0+). ${err.message || err}`)
+	);
 }
 
 function getWebviewContent() {
@@ -46,5 +82,4 @@ function getWebviewContent() {
 	</html>`;
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}
