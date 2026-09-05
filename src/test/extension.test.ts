@@ -22,14 +22,18 @@ suite('Extension Test Suite', () => {
 		await vscode.commands.executeCommand('lvos.open');
 
 		// On builds without the webview API the extension must fall back to the
-		// vscode.previewHtml tier, which writes the same HTML to a temp file.
+		// vscode.previewHtml tier, which previews the extension's own HTML file.
 		const windowApi = vscode.window as any;
 		if (typeof windowApi.createWebviewPanel !== 'function') {
-			const htmlPath = path.join(os.tmpdir(), 'lvos-preview.html');
-			assert.ok(fs.existsSync(htmlPath), 'preview html file should be written when webview API is absent');
+			// out/test/suite -> repo root — the shipped preview asset lives there.
+			const previewPath = path.resolve(__dirname, '..', '..', '..', 'preview', 'lvos-preview.html');
+			assert.ok(fs.existsSync(previewPath), 'extension preview file should exist');
 			assert.ok(
-				fs.readFileSync(htmlPath, 'utf8').indexOf('https://iemand005.github.io/LVOS') !== -1,
+				fs.readFileSync(previewPath, 'utf8').indexOf('https://iemand005.github.io/LVOS') !== -1,
 				'preview html should contain the LVOS page iframe');
+			assert.ok(
+				!fs.existsSync(path.join(os.tmpdir(), 'lvos-preview.html')),
+				'preview html must be shipped with the extension, not written to the temp dir');
 		}
 	});
 });
