@@ -10,6 +10,8 @@ Works in any version of VSCode (1.0.0 and up) but published build requires 1.14 
 2. Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (or <kbd>F1</kbd>)
 3. Type `Open LVOS`
 
+[Open het Command Palette](command:workbench.action.showCommands)
+
 ## Features
 
 Apps and games
