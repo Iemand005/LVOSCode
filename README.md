@@ -1,8 +1,14 @@
-# lvos README
+# LVOS
 
 An open source operating system that can run in VSCode.
 
 Works in any version of VSCode (1.0.0 and up) but published build requires 1.14 since there's no type defs for older versions.
+
+## How to use
+
+1. Install the extension
+2. Press `Ctrl + Shift + P` (or F1)
+3. Type `Open LVOS`
 
 ## Features
 
