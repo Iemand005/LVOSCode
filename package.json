@@ -1,7 +1,7 @@
 {
   "name": "lvos",
   "displayName": "LVOSCode",
-  "publisher": "lvos",
+  "publisher": "Lasse",
   "description": "Lightweight Virtual Operating System",
   "version": "0.0.1",
   "engines": {
