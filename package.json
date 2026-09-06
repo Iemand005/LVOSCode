@@ -15,7 +15,6 @@
     "Other"
   ],
   "activationEvents": [
-    "*",
     "onCommand:lvos.open"
   ],
   "main": "./dist/extension.js",
