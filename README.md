@@ -7,7 +7,7 @@ Works in any version of VSCode (1.0.0 and up) but published build requires 1.14 
 ## How to use
 
 1. Install the extension
-2. Press `Ctrl + Shift + P` (or F1)
+2. Press `<kbd>Ctrl + Shift + P</kbd>` (or F1)
 3. Type `Open LVOS`
 
 ## Features
