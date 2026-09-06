@@ -5,7 +5,11 @@
   "description": "Lightweight Virtual Operating System",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.0.0"
+    "vscode": "^1.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iemand005/LVOSCode.git"
   },
   "categories": [
     "Other"
